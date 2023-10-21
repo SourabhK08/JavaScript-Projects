@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bg Changer | Sourabh kakani</title>
+  </head>
+  <body
+    style="
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      background-color: #212121;
+      color: aliceblue;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    "
+  >
+    <h2>Press start to change the background color every second.</h2>
+    <h2>Press stop to end the process.</h2>
+    <br />
+    <div style="text-align: center">
+      <button
+        id="start"
+        style="
+          width: 80px;
+          padding: 10px;
+          font-weight: bold;
+          font-size: large;
+          text-align: center;
+        "
+      >
+        Start
+      </button>
+      &nbsp;&nbsp;
+      <button
+        id="stop"
+        style="
+          width: 80px;
+          padding: 10px;
+          font-weight: bold;
+          font-size: large;
+          text-align: center;
+        "
+      >
+        Stop
+      </button>
+    </div>
+    <script>
+      const body = document.querySelector(".body");
+      const start = document.querySelector("#start");
+      const stop = document.querySelector("#stop");
+
+      const randomColor = function () {
+        const hex = "0123456789ABCDEF";
+        let color = "#";
+        for (let index = 0; index < 6; index++) {
+          color += hex[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      };
+
+      let interval;
+      start.addEventListener("click", () => {
+        const chgColor = function () {
+          document.body.style.backgroundColor = randomColor();
+        };
+        if (!interval) {
+          interval = setInterval(chgColor, 1000);
+        }
+      });
+
+      stop.addEventListener("click", () => {
+        clearInterval(interval);
+        interval = null;
+      });
+    </script>
+  </body>
+</html>
